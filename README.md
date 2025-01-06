@@ -41,19 +41,21 @@ Um aplicativo simples de lista de tarefas que permite aos usuários criar, edita
 
 ```plaintext
 lib/
-├── helper/                # Classes auxiliares
-│   ├── http.dart          # Classe para chamadas HTTP
-│   └── navigator.dart     # Classe para navegação
-├── src/                   # Diretório principal do código
-│   ├── model/             # Modelos de dados
-│   │   └── todo_model.dart # Modelo representando uma tarefa
-│   ├── view/              # Telas principais do aplicativo
-│   │   ├── todo_create.dart # Tela para criar uma nova tarefa
-│   │   ├── todo_edit.dart   # Tela para editar uma tarefa existente
-│   │   └── todo_list.dart   # Tela com a lista de tarefas
-│   └── viewmodel/         # Lógica de negócios e estado
-│       └── todo_viewmodel.dart # ViewModel para gerenciar tarefas
-└── main.dart              # Ponto de entrada do aplicativo
+├── helper/                      # Classes auxiliares
+│   ├── widgets/
+│   │   └── custom_button.dart   # Botão personalizado
+│   ├── http.dart                # Classe para chamadas HTTP
+│   └── navigator.dart           # Classe para navegação
+├── src/                         # Diretório principal do código
+│   ├── model/                   # Modelos de dados
+│   │   └── todo_model.dart      # Modelo representando uma tarefa
+│   ├── view/                    # Telas principais do aplicativo
+│   │   ├── todo_create.dart     # Tela para criar uma nova tarefa
+│   │   ├── todo_edit.dart       # Tela para editar uma tarefa existente
+│   │   └── todo_list.dart       # Tela com a lista de tarefas
+│   └── viewmodel/               # Lógica de negócios e estado
+│       └── todo_viewmodel.dart  # ViewModel para gerenciar tarefas
+└── main.dart                    # Ponto de entrada do aplicativo
 ```
 
 ## Recursos Futuros
