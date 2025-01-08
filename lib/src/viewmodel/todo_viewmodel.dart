@@ -115,6 +115,7 @@ class TodoViewModel extends ChangeNotifier {
     _navigationService.goBack();
     if (resData) {
       allTodos.removeAt(index);
+      getAllTodos();
       notifyListeners();
     } else {
       if (kDebugMode) {
