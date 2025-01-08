@@ -79,7 +79,7 @@ class _TodoListState extends State<TodoList> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     margin: const EdgeInsets.symmetric(vertical: 8),
-                    elevation: 2,
+                    elevation: 1,
                     child: ListTile(
                       contentPadding: const EdgeInsets.symmetric(
                         vertical: 12,

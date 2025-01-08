@@ -71,8 +71,13 @@ class _TodoFinishedState extends State<TodoFinished> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    elevation: 1,
+                    color: const Color(0xFFF5F7F9),
                     child: ListTile(
-                        tileColor: Colors.white,
                         title: Text(
                             todocontroller.allTodos[i].todoTitle.toString()),
                         subtitle: Text(todocontroller
