@@ -44,15 +44,19 @@ lib/
 ├── helper/                      # Classes auxiliares
 │   ├── widgets/
 │   │   └── custom_button.dart   # Botão personalizado
+│   │   └── welcome_user.dart    # Cabeçalho que é chamada em mais de 1 tela
 │   ├── http.dart                # Classe para chamadas HTTP
 │   └── navigator.dart           # Classe para navegação
 ├── src/                         # Diretório principal do código
 │   ├── model/                   # Modelos de dados
 │   │   └── todo_model.dart      # Modelo representando uma tarefa
 │   ├── view/                    # Telas principais do aplicativo
+│   │   ├── dashboard_page.dart  # Tela principal
 │   │   ├── todo_create.dart     # Tela para criar uma nova tarefa
 │   │   ├── todo_edit.dart       # Tela para editar uma tarefa existente
+│   │   ├── todo_finished.dart   # Tela que traz as tarefas finalizadas
 │   │   └── todo_list.dart       # Tela com a lista de tarefas
+│   │   └── todo_search.dart     # Tela para buscar as tarefas criadas
 │   └── viewmodel/               # Lógica de negócios e estado
 │       └── todo_viewmodel.dart  # ViewModel para gerenciar tarefas
 └── main.dart                    # Ponto de entrada do aplicativo
