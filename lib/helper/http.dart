@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  final String _baseURL =
-      "https://crudcrud.com/api/4fe6b901f15c43cc868b47c1e7bffd5c";
+  final String _baseURL = "https://677d101c4496848554c8db18.mockapi.io/api/v1";
 
   get(String url) async {
     try {
@@ -15,7 +14,6 @@ class ApiProvider {
         return responseJson;
       }
     } catch (e) {
-     
       rethrow;
     }
   }
@@ -33,7 +31,6 @@ class ApiProvider {
         return true;
       }
     } catch (e) {
-      
       rethrow;
     }
   }
@@ -51,7 +48,6 @@ class ApiProvider {
         return true;
       }
     } catch (e) {
-      
       rethrow;
     }
   }
@@ -64,8 +60,7 @@ class ApiProvider {
         return true;
       }
     } catch (e) {
-      //bad practice to print error use logger
-      // print(e);
+      
       rethrow;
     }
   }

@@ -12,12 +12,12 @@ class TodoEdit extends StatefulWidget {
 
 class _TodoEditState extends State<TodoEdit> {
   final formKey = GlobalKey<FormState>();
-  late bool isFinished; // Variável para armazenar o estado "finalizado"
+  late bool isFinished;
 
   @override
   void initState() {
     super.initState();
-    // Inicializa `isFinished` com o valor atual da tarefa
+
     isFinished = widget.tododata.finished ?? false;
   }
 
@@ -27,10 +27,6 @@ class _TodoEditState extends State<TodoEdit> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text("EDITAR"),
-      ),
       body: Form(
         key: formKey,
         child: SizedBox(
@@ -87,7 +83,7 @@ class _TodoEditState extends State<TodoEdit> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Checkbox(
-                    checkColor: Color(0xFF449988),
+                    checkColor: const Color(0xFF449988),
                     activeColor: Colors.white,
                     value: isFinished,
                     onChanged: (value) {
@@ -108,6 +104,7 @@ class _TodoEditState extends State<TodoEdit> {
                   if (formKey.currentState!.validate()) {
                     todocontroller.editTodo(widget.tododata.sId, isFinished);
                   }
+                  Navigator.pop(context);
                 },
                 child: Container(
                   width: 400,
@@ -119,7 +116,8 @@ class _TodoEditState extends State<TodoEdit> {
                     child: Text(
                       "SALVAR",
                       style: TextStyle(
-                          color: Color(0xFF449988), fontWeight: FontWeight.bold),
+                          color: Color(0xFF449988),
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

@@ -1,21 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/src/viewmodel/todo_viewmodel.dart';
 
-class TodoFinished extends StatelessWidget {
+class TodoFinished extends StatefulWidget {
   const TodoFinished({super.key});
+
+  @override
+  State<TodoFinished> createState() => _TodoFinishedState();
+}
+
+class _TodoFinishedState extends State<TodoFinished> {
+  @override
+  void initState() {
+    super.initState();
+
+    final todocontroller = Provider.of<TodoViewModel>(context, listen: false);
+
+    todocontroller.getFinishedTodos();
+  }
 
   @override
   Widget build(BuildContext context) {
     final todocontroller = Provider.of<TodoViewModel>(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("TODO FINALIZADO"),
-        backgroundColor: Colors.white,
-      ),
       body: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Completed Tasks, ',
+                style: GoogleFonts.urbanist(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              InkWell(
+                onTap: () async {
+                  if (todocontroller.finishedTodos.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(
+                          "Não há tasks finalizadas para excluir.",
+                          style: GoogleFonts.urbanist(),
+                        ),
+                        duration: const Duration(seconds: 2),
+                      ),
+                    );
+                  } else {
+                    await todocontroller.deleteAllFinishedTodos();
+                  }
+                },
+                child: Text(
+                  'Delete all',
+                  style: GoogleFonts.urbanist(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFFFF5E5E)),
+                ),
+              ),
+            ],
+          ),
           ListView.builder(
               itemCount: todocontroller.finishedTodos.length,
               shrinkWrap: true,
@@ -24,36 +72,26 @@ class TodoFinished extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
                     child: ListTile(
-                      tileColor: Colors.white,
-                      title:
-                          Text(todocontroller.allTodos[i].todoTitle.toString()),
-                      subtitle: Text(todocontroller.allTodos[i].todoDescription
-                          .toString()),
-                      trailing: PopupMenuButton(
-                        child: const Icon(Icons.more_vert),
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<String>>[
-                          const PopupMenuItem(
-                            value: 'edit',
-                            child: Text("EDITAR"),
-                          ),
-                          const PopupMenuItem(
-                            value: 'delete',
-                            child: Text("DELETAR"),
-                          )
-                        ],
-                        onSelected: (String value) {
-                          if (value == "edit") {
-                            todocontroller
-                                .navigateToEdit(todocontroller.allTodos[i]);
-                          }
-                          if (value == "delete") {
+                        tileColor: Colors.white,
+                        title: Text(
+                            todocontroller.allTodos[i].todoTitle.toString()),
+                        subtitle: Text(todocontroller
+                            .allTodos[i].todoDescription
+                            .toString()),
+                        leading: const Icon(
+                          Icons.check_box_rounded,
+                          color: Color(0xFFC6CFDC),
+                        ),
+                        trailing: InkWell(
+                          onTap: () {
                             todocontroller.deleteTodo(
                                 todocontroller.allTodos[i].sId.toString(), i);
-                          }
-                        },
-                      ),
-                    ),
+                          },
+                          child: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        )),
                   ),
                 );
               })
